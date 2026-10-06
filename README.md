@@ -1,6 +1,13 @@
 # 🚦 Smart Traffic Violation Detector
 
-An AI-powered computer vision traffic monitoring and automatic violation detection system with a real-time web dashboard.
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-ONLINE-00f0ff?style=for-the-badge&logo=fastapi)](https://smart-traffic-violation-detector-production.up.railway.app)
+[![GitHub License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg?style=for-the-badge&logo=python)](https://python.org)
+[![React](https://img.shields.io/badge/React-18-cyan.svg?style=for-the-badge&logo=react)](https://react.dev)
+
+> **AI-Powered Computer Vision Traffic Monitoring & Cyberpunk Enforcement Command Center**
+
+🌐 **Live Website Link**: [https://smart-traffic-violation-detector-production.up.railway.app](https://smart-traffic-violation-detector-production.up.railway.app)
 
 ---
 
@@ -14,7 +21,8 @@ An AI-powered computer vision traffic monitoring and automatic violation detecti
 6. 📱 **Mobile Phone Usage**: Detects driver posture and mobile device proximity.
 7. 🚘 **Speed Violations**: Estimates vehicle speed across calibrated intersection ROI.
 8. 🔢 **License Plate Recognition (ALPR / OCR)**: Reads vehicle license plate text (e.g., `GJ01AB1234`, `MH12DE5678`).
-9. 🚨 **e-Challan Generator**: Instant detailed violation modal with snapshot evidence, fine calculation, and printable receipt.
+9. 🚨 **e-Challan Generator & Payment**: Instant detailed violation modal with snapshot evidence, fine calculation, and demo UPI payment.
+10. 📡 **2D Radar Scanner & Audio Siren**: Live sweeping radar target tracker and Web Audio API synthesized warning siren.
 
 ---
 
@@ -53,7 +61,7 @@ An AI-powered computer vision traffic monitoring and automatic violation detecti
                       SQLite Database
                              │
                              ▼
-                   FastAPI Streaming API
+                    FastAPI Streaming API
                              │
                              ▼
                     React Web Dashboard
@@ -61,73 +69,20 @@ An AI-powered computer vision traffic monitoring and automatic violation detecti
 
 ---
 
-## 🚀 How to Run the System
-
-### Prerequisite
-Python 3.9+ and Node.js 18+ installed on your system.
+## 🚀 How to Run Locally
 
 ### 1️⃣ Start the Python Backend API
-Open terminal / PowerShell in `backend/`:
-
-```bash
-cd "C:\Users\raju\Documents\AI-ML Project\backend"
-
-# Install Python requirements
-pip install -r requirements.txt
-
-# Start FastAPI server
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+```powershell
+cd backend
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --host 127.0.0.1 --port 8080 --reload
 ```
 
-Backend endpoints:
-- API Base: `http://127.0.0.1:8000`
-- Interactive Swagger Docs: `http://127.0.0.1:8000/docs`
-- Live MJPEG Video Stream: `http://127.0.0.1:8000/api/stream`
-
----
-
 ### 2️⃣ Start the React Web Dashboard
-Open a second terminal / PowerShell in `frontend/`:
-
-```bash
-cd "C:\Users\raju\Documents\AI-ML Project\frontend"
-
-# Install Node dependencies
+```powershell
+cd frontend
 npm install
-
-# Run Vite development server
 npm run dev
 ```
 
 Open your browser at: **`http://localhost:3000`**
-
----
-
-## 📁 Project Structure
-
-```
-AI-ML Project/
-├── backend/
-│   ├── main.py                 # FastAPI Web Server & MJPEG Stream
-│   ├── vision_engine.py        # OpenCV + YOLO + OCR pipeline
-│   ├── database.py             # SQLite DB manager with seed data
-│   ├── demo_traffic_gen.py     # 1080p Traffic OpenCV simulator engine
-│   └── requirements.txt        # Backend dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── DashboardHeader.jsx
-│   │   │   ├── MetricCards.jsx
-│   │   │   ├── LiveCameraFeed.jsx
-│   │   │   ├── SignalController.jsx
-│   │   │   ├── ViolationList.jsx
-│   │   │   ├── ViolationModal.jsx
-│   │   │   └── AnalyticsView.jsx
-│   │   ├── App.jsx             # Main Dashboard container
-│   │   ├── main.jsx
-│   │   └── index.css           # Custom styles & Tailwind
-│   ├── package.json
-│   ├── vite.config.js
-│   └── tailwind.config.js
-└── README.md
-```
