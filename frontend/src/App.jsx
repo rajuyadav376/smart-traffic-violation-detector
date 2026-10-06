@@ -20,7 +20,7 @@ export default function App() {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const lastViolationCount = useRef(0);
 
-  const API_BASE = '';
+  const API_BASE = import.meta.env.VITE_API_URL || '';
 
   // Web Audio API Siren Beep Generator
   const playSirenBeep = () => {
