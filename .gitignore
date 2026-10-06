@@ -1,0 +1,23 @@
+# Node modules & build files
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python cache & virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+ENV/
+
+# Database files
+backend/*.db
+backend/*.sqlite3
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
