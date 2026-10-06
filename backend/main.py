@@ -64,18 +64,34 @@ class SimulationConfigRequest(BaseModel):
 class SpawnVehicleRequest(BaseModel):
     violation_type: str # Speeding, No Helmet, Triple Riding, Wrong Side, Red Light Jump
 
-@app.get("/")
-def root():
-    return {
-        "system": "Smart Traffic AI Detector",
-        "status": "ONLINE",
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
-    }
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, StreamingResponse, JSONResponse, Response
 
-@app.get("/health")
+dist_path = os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")
+
+@app.get("/api/health")
 @app.get("/healthz")
 def health_check():
-    return {"status": "ok"}
+    return {"status": "ok", "system": "Smart Traffic AI Detector"}
+
+if os.path.exists(dist_path):
+    app.mount("/assets", StaticFiles(directory=os.path.join(dist_path, "assets")), name="assets")
+
+    @app.get("/")
+    def root():
+        index_file = os.path.join(dist_path, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"system": "Smart Traffic AI Detector", "status": "ONLINE"}
+else:
+    @app.get("/")
+    def root():
+        return {
+            "system": "Smart Traffic AI Detector",
+            "status": "ONLINE",
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
 
 @app.get("/api/stats")
 def fetch_stats():
