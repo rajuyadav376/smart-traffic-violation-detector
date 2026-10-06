@@ -2,11 +2,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install minimal libraries for OpenCV headless and networking
+# Install system dependencies (using modern Debian libgl1 instead of obsolete libgl1-mesa-glx)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg \
+    libgl1 \
+    libglib2.0-0 \
     libsm6 \
     libxext6 \
+    ffmpeg \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
