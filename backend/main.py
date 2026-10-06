@@ -72,6 +72,11 @@ def root():
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
     }
 
+@app.get("/health")
+@app.get("/healthz")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/api/stats")
 def fetch_stats():
     return get_stats()
